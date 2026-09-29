@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_enemy"]
+
+[sub_resource type="RectangleShape2D" id="EnemyBodyShape"]
+size = Vector2(24, 28)
+
+[sub_resource type="RectangleShape2D" id="EnemyContactShape"]
+size = Vector2(32, 32)
+
+[node name="Skeleton" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 0
+collision_mask = 1
+script = ExtResource("1_enemy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("EnemyBodyShape")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.25, 1.25)
+
+[node name="Contact" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitoring = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Contact"]
+shape = SubResource("EnemyContactShape")
+
+[connection signal="body_entered" from="Contact" to="." method="_on_contact_body_entered"]
