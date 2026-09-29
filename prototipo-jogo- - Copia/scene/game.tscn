@@ -5,9 +5,10 @@
 [ext_resource type="TileSet" uid="uid://b507peyopoa5l" path="res://tiles/terrain.tres" id="3_p1ry8"]
 [ext_resource type="TileSet" uid="uid://djyagb3ivynh5" path="res://tiles/decoration.tres" id="4_xlg7c"]
 [ext_resource type="Texture2D" uid="uid://dmihlk1c4olj1" path="res://sprites/16-bit-spike-Sheet.png" id="4_xwcet"]
-[ext_resource type="Script" path="res://scripts/spikes.gd" id="5_spikes"]
+[ext_resource type="Script" uid="uid://du0asn1fmaqtr" path="res://scripts/spikes.gd" id="5_spikes"]
 [ext_resource type="PackedScene" path="res://entities/enemy.tscn" id="6_enemy"]
-[ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="7_enemy_spawner"]
+[ext_resource type="Script" uid="uid://dfhtlkn3s677y" path="res://scripts/enemy_spawner.gd" id="7_enemy_spawner"]
+[ext_resource type="Script" uid="uid://nik4qa3xx4dh" path="res://scene/win_condition.gd" id="9_17rxn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qpk70"]
 texture = ExtResource("4_xwcet")
@@ -27,19 +28,21 @@ sources/0 = SubResource("TileSetAtlasSource_qpk70")
 [sub_resource type="RectangleShape2D" id="SpikeHazardShape"]
 size = Vector2(1520, 18)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7rwxa"]
+
 [node name="game" type="Node2D" unique_id=1639188748]
 script = ExtResource("7_enemy_spawner")
 
 [node name="Player" parent="." unique_id=2035344092 instance=ExtResource("1_dbls1")]
 position = Vector2(-43, 252)
 
-[node name="Skeleton1" parent="." instance=ExtResource("6_enemy")]
+[node name="Skeleton1" parent="." unique_id=1643198083 instance=ExtResource("6_enemy")]
 position = Vector2(130, 252)
 
-[node name="Skeleton2" parent="." instance=ExtResource("6_enemy")]
+[node name="Skeleton2" parent="." unique_id=1088378842 instance=ExtResource("6_enemy")]
 position = Vector2(400, 252)
 
-[node name="Skeleton3" parent="." instance=ExtResource("6_enemy")]
+[node name="Skeleton3" parent="." unique_id=1002148620 instance=ExtResource("6_enemy")]
 position = Vector2(700, 252)
 
 [node name="Camera" parent="." unique_id=1738923428 instance=ExtResource("2_xwcet")]
@@ -56,17 +59,26 @@ tile_map_data = PackedByteArray("AAAAAAwAAAASAAUAAAABAAwAAAATAAUAAAACAAwAAAASAAU
 tile_set = ExtResource("4_xlg7c")
 
 [node name="Spikes" type="TileMapLayer" parent="tiles" unique_id=954690692]
-script = ExtResource("5_spikes")
 tile_map_data = PackedByteArray("AADl/xkAAAAAAAAAAADm/xkAAAAAAAAAAADn/xkAAAAAAAAAAADo/xkAAAAAAAAAAADp/xkAAAAAAAAAAADq/xkAAAAAAAAAAADr/xkAAAAAAAAAAADs/xkAAAAAAAAAAADt/xkAAAAAAAAAAADu/xkAAAAAAAAAAADv/xkAAAAAAAAAAADw/xkAAAAAAAAAAADx/xkAAAAAAAAAAADy/xkAAAAAAAAAAADz/xkAAAAAAAAAAAD0/xkAAAAAAAAAAAD1/xkAAAAAAAAAAAD2/xkAAAAAAAAAAAD3/xkAAAAAAAAAAAD4/xkAAAAAAAAAAAD5/xkAAAAAAAAAAAD6/xkAAAAAAAAAAAD7/xkAAAAAAAAAAAD8/xkAAAAAAAAAAAD9/xkAAAAAAAAAAAD+/xkAAAAAAAAAAAD//xkAAAAAAAAAAAAAABkAAAAAAAAAAAABABkAAAAAAAAAAAACABkAAAAAAAAAAAADABkAAAAAAAAAAAAEABkAAAAAAAAAAAAFABkAAAAAAAAAAAAGABkAAAAAAAAAAAAHABkAAAAAAAAAAAAIABkAAAAAAAAAAAAJABkAAAAAAAAAAAAKABkAAAAAAAAAAAALABkAAAAAAAAAAAAMABkAAAAAAAAAAAANABkAAAAAAAAAAAAOABkAAAAAAAAAAAAPABkAAAAAAAAAAAAQABkAAAAAAAAAAAARABkAAAAAAAAAAAASABkAAAAAAAAAAAATABkAAAAAAAAAAAAUABkAAAAAAAAAAAAVABkAAAAAAAAAAAAWABkAAAAAAAAAAAAXABkAAAAAAAAAAAAYABkAAAAAAAAAAAAZABkAAAAAAAAAAAAaABkAAAAAAAAAAAAbABkAAAAAAAAAAAAcABkAAAAAAAAAAAAdABkAAAAAAAAAAAAeABkAAAAAAAAAAAAfABkAAAAAAAAAAAAgABkAAAAAAAAAAAAhABkAAAAAAAAAAAAiABkAAAAAAAAAAAAjABkAAAAAAAAAAAAkABkAAAAAAAAAAAAlABkAAAAAAAAAAAAmABkAAAAAAAAAAAAnABkAAAAAAAAAAAAoABkAAAAAAAAAAAApABkAAAAAAAAAAAAqABkAAAAAAAAAAAArABkAAAAAAAAAAAAsABkAAAAAAAAAAAAtABkAAAAAAAAAAAAuABkAAAAAAAAAAAAvABkAAAAAAAAAAAAwABkAAAAAAAAAAAAxABkAAAAAAAAAAAAyABkAAAAAAAAAAAAzABkAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_7rwxa")
+script = ExtResource("5_spikes")
 
-[node name="Hazard" type="Area2D" parent="tiles/Spikes"]
+[node name="Hazard" type="Area2D" parent="tiles/Spikes" unique_id=1656280644]
 position = Vector2(320, 400)
 collision_layer = 4
 collision_mask = 2
-monitoring = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="tiles/Spikes/Hazard"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tiles/Spikes/Hazard" unique_id=1387855465]
 shape = SubResource("SpikeHazardShape")
 
+[node name="WinCondition" type="Area2D" parent="." unique_id=325295641]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("9_17rxn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WinCondition" unique_id=1375307288]
+position = Vector2(183, -1978)
+shape = SubResource("RectangleShape2D_7rwxa")
+
 [connection signal="body_entered" from="tiles/Spikes/Hazard" to="tiles/Spikes" method="_on_hazard_body_entered"]
+[connection signal="body_entered" from="WinCondition" to="WinCondition" method="_on_body_entered"]
