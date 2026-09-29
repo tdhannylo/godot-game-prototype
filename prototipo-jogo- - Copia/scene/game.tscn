@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://du0asn1fmaqtr" path="res://scripts/spikes.gd" id="5_spikes"]
 [ext_resource type="PackedScene" path="res://entities/enemy.tscn" id="6_enemy"]
 [ext_resource type="Script" uid="uid://dfhtlkn3s677y" path="res://scripts/enemy_spawner.gd" id="7_enemy_spawner"]
-[ext_resource type="Script" uid="uid://nik4qa3xx4dh" path="res://scene/win_condition.gd" id="9_17rxn"]
+[ext_resource type="Script" uid="uid://nik4qa3xx4dh" path="res://scripts/win_condition.gd" id="9_17rxn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qpk70"]
 texture = ExtResource("4_xwcet")
