@@ -5,6 +5,7 @@ enum PlayerState{
 	walk,
 	jump,
 	fall,
+	dash,
 	hurt
 }
 
@@ -14,7 +15,7 @@ enum PlayerState{
 
 @export var max_speed = 200
 @export var acceleration = 500
-@export var deceleration = 500
+@export var deceleration = 1000
 @export var slide_deceleration = 67
 const JUMP_VELOCITY = -400.0
 
@@ -23,6 +24,12 @@ var jump_count = 0
 var direction = 0
 var status: PlayerState
 var dead := false
+
+@export var dash_speed = 400.0
+@export var dash_duration = 0.15
+
+var is_dashing := false
+var dash_time := 0.0
 
 func _ready() -> void:
 	go_to_idle_state()
@@ -44,6 +51,8 @@ func _physics_process(delta: float) -> void:
 			jump_state(delta)
 		PlayerState.fall:
 			fall_state(delta)
+		PlayerState.dash:
+			dash_state(delta)
 		PlayerState.hurt:
 			hurt_state(delta)
 	
@@ -66,6 +75,17 @@ func go_to_jump_state():
 func go_to_fall_state():
 	status = PlayerState.fall
 	anim.play("fall")
+	
+func go_to_dash_state():
+	status = PlayerState.dash
+	is_dashing = true
+	dash_time = 0.0
+	
+	if direction == 0:
+		direction = -1 if anim.flip_h else 1
+	
+	velocity.x = direction * dash_speed
+	velocity.y = 0
 
 func go_to_hurt_state():
 	if dead:
@@ -111,6 +131,10 @@ func walk_state(delta):
 func jump_state(delta):
 	move(delta)
 	
+	if Input.is_action_just_pressed("dash"):
+		go_to_dash_state()
+		return
+	
 	if Input.is_action_just_pressed("jump") && can_jump():
 		go_to_jump_state()
 		return
@@ -120,6 +144,10 @@ func jump_state(delta):
 
 func fall_state(delta):
 	move(delta)
+	
+	if Input.is_action_just_pressed("dash"):
+		go_to_dash_state()
+		return
 	
 	if Input.is_action_just_pressed("jump") && can_jump():
 		go_to_jump_state()
@@ -131,6 +159,14 @@ func fall_state(delta):
 		else:
 			go_to_walk_state()
 		return
+
+func dash_state(delta):
+	dash_time += delta
+
+	if dash_time >= dash_duration:
+		dash_time = 0.0
+		is_dashing = false
+		go_to_fall_state()
 
 func hurt_state(_delta):
 	pass

@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" path="res://entities/enemy.tscn" id="6_enemy"]
 [ext_resource type="Script" uid="uid://dfhtlkn3s677y" path="res://scripts/enemy_spawner.gd" id="7_enemy_spawner"]
 [ext_resource type="Script" uid="uid://nik4qa3xx4dh" path="res://scripts/win_condition.gd" id="9_17rxn"]
+[ext_resource type="Script" uid="uid://bf4v0cu7jh03k" path="res://scripts/start_screen.gd" id="10_yq8tf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qpk70"]
 texture = ExtResource("4_xwcet")
@@ -47,6 +48,7 @@ position = Vector2(700, 252)
 
 [node name="Camera" parent="." unique_id=1738923428 instance=ExtResource("2_xwcet")]
 zoom = Vector2(2, 2)
+limit_top = -2022
 
 [node name="tiles" type="Node2D" parent="." unique_id=1122614704]
 
@@ -79,6 +81,37 @@ script = ExtResource("9_17rxn")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WinCondition" unique_id=1375307288]
 position = Vector2(183, -1978)
 shape = SubResource("RectangleShape2D_7rwxa")
+
+[node name="StartScreen" type="CanvasLayer" parent="." unique_id=302811541]
+script = ExtResource("10_yq8tf")
+
+[node name="ColorRect" type="ColorRect" parent="StartScreen" unique_id=649234600]
+offset_left = 290.0
+offset_top = 73.0
+offset_right = 864.0
+offset_bottom = 397.0
+color = Color(0, 0, 0, 1)
+
+[node name="title" type="Label" parent="StartScreen/ColorRect" unique_id=1881302655]
+layout_mode = 0
+offset_left = 227.0
+offset_top = 39.0
+offset_right = 349.0
+offset_bottom = 62.0
+text = "PUMPKIN RUSH"
+
+[node name="controls" type="Label" parent="StartScreen/ColorRect" unique_id=1946889625]
+layout_mode = 0
+offset_left = 179.0
+offset_top = 132.0
+offset_right = 402.0
+offset_bottom = 233.0
+text = "Walk Right Keys:          D, right
+Walk Left Keys:             A, left
+Jump:                              W, up
+Dash (air only):           spacebar
+
+  PRESS ENTER TO CONTINUE"
 
 [connection signal="body_entered" from="tiles/Spikes/Hazard" to="tiles/Spikes" method="_on_hazard_body_entered"]
 [connection signal="body_entered" from="WinCondition" to="WinCondition" method="_on_body_entered"]
