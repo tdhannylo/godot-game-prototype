@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" format=3 uid="uid://dqbjwy3mgolxr"]
 
-[ext_resource type="Texture2D" uid="uid://dmihlk1c4olj1" path="res://sprites/16-bit-spike-Sheet.png" id="1_3syaa"]
+[ext_resource type="Texture2D" uid="uid://dmihlk1c4olj1" path="res://sprites/obstacles/16-bit-spike-Sheet.png" id="1_3syaa"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ym5sv"]
 texture = ExtResource("1_3syaa")

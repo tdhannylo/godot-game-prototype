@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bu2lcq3p7wmsy"
-path="res://.godot/imported/spinner_run_attack_anim_all_dir_strip_8.png-4fac7ef11d1763f74095990ebecc7556.ctex"
+uid="uid://dmihlk1c4olj1"
+path="res://.godot/imported/16-bit-spike-Sheet.png-7b59113c3a871f4810727a2c45f30430.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/spinner_run_attack_anim_all_dir_strip_8.png"
-dest_files=["res://.godot/imported/spinner_run_attack_anim_all_dir_strip_8.png-4fac7ef11d1763f74095990ebecc7556.ctex"]
+source_file="res://sprites/obstacles/16-bit-spike-Sheet.png"
+dest_files=["res://.godot/imported/16-bit-spike-Sheet.png-7b59113c3a871f4810727a2c45f30430.ctex"]
 
 [params]
 

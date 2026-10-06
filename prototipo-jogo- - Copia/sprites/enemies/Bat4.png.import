@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lrvdcxj66xpo"
-path="res://.godot/imported/spookytileset.png-d505935d88de0746d5eb521c7b690f67.ctex"
+uid="uid://cwfo77wrmtxxd"
+path="res://.godot/imported/Bat4.png-29110d14b74d128d7954d4b609316d4b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/spookytileset.png"
-dest_files=["res://.godot/imported/spookytileset.png-d505935d88de0746d5eb521c7b690f67.ctex"]
+source_file="res://sprites/enemies/Bat4.png"
+dest_files=["res://.godot/imported/Bat4.png-29110d14b74d128d7954d4b609316d4b.ctex"]
 
 [params]
 

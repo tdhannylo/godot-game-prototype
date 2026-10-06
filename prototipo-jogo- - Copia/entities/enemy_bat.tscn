@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://cfp1sh4unhnkp"]
+
+[ext_resource type="Script" uid="uid://du1ct7pv3q1hc" path="res://enemy_bat.gd" id="1_768n3"]
+[ext_resource type="Texture2D" uid="uid://buqksn5rvynvm" path="res://sprites/enemies/Bat1.png" id="2_y6jrr"]
+[ext_resource type="Texture2D" uid="uid://ypcdbpnb07dj" path="res://sprites/enemies/Bat2.png" id="3_5mk4r"]
+[ext_resource type="Texture2D" uid="uid://bap8paxqxramk" path="res://sprites/enemies/Bat3.png" id="4_sogsh"]
+[ext_resource type="Texture2D" uid="uid://cwfo77wrmtxxd" path="res://sprites/enemies/Bat4.png" id="5_bavjj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7rwxa"]
+size = Vector2(19, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wb15r"]
+atlas = ExtResource("2_y6jrr")
+region = Rect2(0, 0, 93, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1qfsm"]
+atlas = ExtResource("3_5mk4r")
+region = Rect2(0, 0, 69, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ra0sr"]
+atlas = ExtResource("4_sogsh")
+region = Rect2(0, 0, 93, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nuhc"]
+atlas = ExtResource("5_bavjj")
+region = Rect2(0, 0, 120, 69)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7rwxa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wb15r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1qfsm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ra0sr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5nuhc")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mtwad"]
+size = Vector2(38, 29)
+
+[node name="enemy_bat" type="CharacterBody2D" unique_id=1408202020 groups=["Enemy"]]
+collision_layer = 4
+script = ExtResource("1_768n3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2132993546]
+position = Vector2(-0.5, 2)
+shape = SubResource("RectangleShape2D_7rwxa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1396481831]
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_7rwxa")
+animation = &"walk"
+frame_progress = 0.9995499
+
+[node name="Contact" type="Area2D" parent="." unique_id=991538220 groups=["Enemy"]]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Contact" unique_id=46089846]
+position = Vector2(1, 2.5)
+shape = SubResource("RectangleShape2D_mtwad")
+
+[connection signal="body_entered" from="Contact" to="." method="_on_contact_body_entered"]

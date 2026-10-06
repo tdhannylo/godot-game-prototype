@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d3p1effo5mqwr"]
 
 [ext_resource type="Script" uid="uid://gxpeermst2h1" path="res://scripts/enemy.gd" id="1_enemy"]
-[ext_resource type="Texture2D" uid="uid://bu2lcq3p7wmsy" path="res://sprites/spinner_run_attack_anim_all_dir_strip_8.png" id="2_pqhw6"]
+[ext_resource type="Texture2D" uid="uid://bu2lcq3p7wmsy" path="res://sprites/obstacles/spinner_run_attack_anim_all_dir_strip_8.png" id="2_pqhw6"]
 
 [sub_resource type="RectangleShape2D" id="EnemyBodyShape"]
 size = Vector2(24, 28)
@@ -39,7 +39,7 @@ animations = [{
 size = Vector2(32, 32)
 
 [node name="Skeleton" type="CharacterBody2D" unique_id=1641005331 groups=["Enemy"]]
-collision_layer = 0
+collision_layer = 4
 script = ExtResource("1_enemy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=448191750]

@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" format=3 uid="uid://nepnivnqnbk"]
 
-[ext_resource type="Texture2D" uid="uid://dmihlk1c4olj1" path="res://sprites/16-bit-spike-Sheet.png" id="1_fqnsc"]
+[ext_resource type="Texture2D" uid="uid://dmihlk1c4olj1" path="res://sprites/obstacles/16-bit-spike-Sheet.png" id="1_fqnsc"]
 [ext_resource type="Texture2D" uid="uid://ytqxu7eks5i6" path="res://sprites/oppcastle-tiles.png" id="2_wfusg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qpk70"]
