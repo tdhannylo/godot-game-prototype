@@ -1,6 +1,6 @@
 extends TileMapLayer
 
-@export var rise_speed: float = 50.0
+@export var rise_speed: float = 75.0
 
 func _process(delta: float) -> void:
 	position.y -= rise_speed * delta

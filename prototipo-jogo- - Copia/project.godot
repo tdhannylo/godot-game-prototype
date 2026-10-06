@@ -23,6 +23,7 @@ window/stretch/aspect="expand"
 [global_group]
 
 Player=""
+hazards="Perigos das fases"
 
 [input]
 

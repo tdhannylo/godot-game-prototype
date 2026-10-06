@@ -1,0 +1,26 @@
+[gd_resource type="TileSet" format=3 uid="uid://dqbjwy3mgolxr"]
+
+[ext_resource type="Texture2D" uid="uid://dmihlk1c4olj1" path="res://sprites/16-bit-spike-Sheet.png" id="1_3syaa"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ym5sv"]
+texture = ExtResource("1_3syaa")
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -4)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -4, 8, -4, 8, 8, -8, 8)
+0:0/0/custom_data_0 = true
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 4, -8, 4, 8, -8, 8)
+1:0/0/custom_data_0 = true
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 4, -8, 4)
+2:0/0/custom_data_0 = true
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -8, 8, -8, 8, 8, -4, 8)
+3:0/0/custom_data_0 = true
+
+[resource]
+physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 2
+custom_data_layer_0/name = "danger"
+custom_data_layer_0/type = 1
+sources/0 = SubResource("TileSetAtlasSource_ym5sv")

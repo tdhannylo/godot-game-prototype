@@ -1,31 +1,62 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene format=3 uid="uid://d3p1effo5mqwr"]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_enemy"]
+[ext_resource type="Script" uid="uid://gxpeermst2h1" path="res://scripts/enemy.gd" id="1_enemy"]
+[ext_resource type="Texture2D" uid="uid://bu2lcq3p7wmsy" path="res://sprites/spinner_run_attack_anim_all_dir_strip_8.png" id="2_pqhw6"]
 
 [sub_resource type="RectangleShape2D" id="EnemyBodyShape"]
 size = Vector2(24, 28)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_b4nis"]
+atlas = ExtResource("2_pqhw6")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvc0s"]
+atlas = ExtResource("2_pqhw6")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8e4v"]
+atlas = ExtResource("2_pqhw6")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0o2pd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b4nis")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uvc0s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x8e4v")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="EnemyContactShape"]
 size = Vector2(32, 32)
 
-[node name="Skeleton" type="CharacterBody2D" groups=["Enemy"]]
+[node name="Skeleton" type="CharacterBody2D" unique_id=1641005331 groups=["Enemy"]]
 collision_layer = 0
-collision_mask = 1
 script = ExtResource("1_enemy")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=448191750]
 position = Vector2(0, 2)
 shape = SubResource("EnemyBodyShape")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(1.25, 1.25)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=352159085]
+scale = Vector2(1.75, 1.75)
+sprite_frames = SubResource("SpriteFrames_0o2pd")
+animation = &"walk"
+frame_progress = 0.07028804
 
-[node name="Contact" type="Area2D" parent="."]
+[node name="Contact" type="Area2D" parent="." unique_id=389048693]
 collision_layer = 0
 collision_mask = 2
-monitoring = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Contact"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Contact" unique_id=1724403487]
 shape = SubResource("EnemyContactShape")
 
 [connection signal="body_entered" from="Contact" to="." method="_on_contact_body_entered"]

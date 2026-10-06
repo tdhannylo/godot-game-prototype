@@ -10,7 +10,6 @@ var start_x := 0.0
 
 func _ready() -> void:
 	start_x = global_position.x
-	_create_walk_animation()
 	sprite.play("walk")
 
 func _physics_process(delta: float) -> void:
@@ -25,19 +24,6 @@ func _physics_process(delta: float) -> void:
 	if is_on_wall() or reached_patrol_edge:
 		direction *= -1.0
 	_update_facing()
-
-func _create_walk_animation() -> void:
-	var frames := SpriteFrames.new()
-	frames.add_animation("walk")
-	frames.set_animation_speed("walk", 7.0)
-	frames.set_animation_loop("walk", true)
-	var sheet: Texture2D = load("res://sprites/skeleton sprite-Sheet.png")
-	for column in range(4):
-		var frame := AtlasTexture.new()
-		frame.atlas = sheet
-		frame.region = Rect2(column * 32, 0, 32, 32)
-		frames.add_frame("walk", frame)
-	sprite.sprite_frames = frames
 
 func _update_facing() -> void:
 	sprite.flip_h = direction > 0.0

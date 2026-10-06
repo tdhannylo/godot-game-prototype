@@ -57,6 +57,7 @@ func _physics_process(delta: float) -> void:
 			hurt_state(delta)
 	
 	move_and_slide()
+	check_tile_hazard()
 
 func go_to_idle_state():
 	status = PlayerState.idle
@@ -192,6 +193,24 @@ func update_direction():
 
 func can_jump() -> bool:
 	return jump_count < max_jump_count
+
+func check_tile_hazard() -> void:
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+
+		if collider is TileMapLayer and collider.is_in_group("hazards"):
+			var tilemap = collider
+			
+			var collision_position = collision.get_position()
+			var coordinates = tilemap.local_to_map(
+				tilemap.to_local(collision_position)
+			)
+			
+			var tile_data = tilemap.get_cell_tile_data(coordinates)
+			
+			if tile_data and tile_data.get_custom_data("danger"):
+				die()
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if dead:
